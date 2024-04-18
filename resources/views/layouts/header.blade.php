@@ -22,7 +22,7 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="/assets/img/user.png" alt class="w-40 h-40 rounded-circle"
+                        <img src="/assets/img/favicon.png" alt class="w-40 h-40 rounded-circle"
                             style="object-fit: cover;">
                     </div>
                 </a>
@@ -32,7 +32,7 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="/assets/img/user.png"  class="w-40 h-40 rounded-circle"
+                                        <img src="/assets/img/favicon.png"  class="w-40 h-40 rounded-circle"
                                             style="object-fit: cover;">
                                     </div>
                                 </div>

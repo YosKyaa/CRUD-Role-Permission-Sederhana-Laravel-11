@@ -15,17 +15,17 @@ class Fakultas extends Model
         'nama_fakultas',
         'kode_fakultas',
         ];
-        public function prodi()
+    public function prodi()
     {
-    return $this->hasMany(Prodi::class);
+        return $this->hasMany(Prodi::class);
     } 
 
-    public function delete()
-        {
-        // Hapus semua prodi yang terkait dengan fakultas
-        $this->prodis()->delete();
+    // public function delete()
+    //     {
+    //     // Hapus semua prodi yang terkait dengan fakultas
+    //     $this->prodis()->delete();
 
-        // Hapus fakultas itu sendiri
-        return parent::delete();
-        }
+    //     // Hapus fakultas itu sendiri
+    //     return parent::delete();
+    //     }
 }

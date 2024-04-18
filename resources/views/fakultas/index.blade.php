@@ -199,7 +199,7 @@
                             `<a class=" text-success" title="Edit" href="{{ url('/fakultas/edit/` +
                             row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                            .id + `\',\'` + row.nama_fakultas + `\',\')" ><i class="bx bx-trash"></i></a>`;
+                            .id + `\',\'` + row.nama_fakultas + `\')" ><i class="bx bx-trash"></i></a>`;
                         return html;
                     },
                     "orderable": false,
@@ -227,6 +227,7 @@
                             "_token": $("meta[name='csrf-token']").attr("content"),
                         },
                         success: function (data) {
+                            // alert(data);
                             if (data['success']) {
                                 swal(data['message'], {
                                     icon: "success",

@@ -108,6 +108,7 @@ class FakultasController extends Controller
      * Remove the specified resource from storage.
      */
     public function delete(Request $request){
+        // return $request->id;
         $data = Fakultas::find($request->id);
         if($data){
             $data->delete();
