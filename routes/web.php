@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\User;
 use App\Http\Controllers\UserController;
@@ -48,7 +50,7 @@ Route::group(['prefix' => 'prodi'], function () {
   });
 
   Route::group(['prefix' => 'user'], function () {
-    Route::any('/', [UserController::class, 'index'])->name('user.index')->middleware('auth');
+    Route::any('/', [UserController::class, 'index'])->name('user_index')->middleware('auth');
     Route::get('/data', [UserController::class, 'data'])->name('user_data');
     Route::delete('/delete', [UserController::class, 'delete'])->name('user_delete');
     Route::get('/edit_user/{id}', [UserController::class, 'edit'])->name('user_edit');
@@ -57,3 +59,20 @@ Route::group(['prefix' => 'prodi'], function () {
   });
 
   
+  Route::group(['prefix' => 'permission'], function () {
+    Route::any('/', [PermissionController::class, 'index'])->name('role-permission.permission.index')->middleware('auth');
+    Route::get('/data', [PermissionController::class, 'data'])->name('role-permission.permission.data');
+    Route::delete('/delete', [PermissionController::class, 'delete'])->name('permission_delete');
+    Route::get('/edit_permission/{id}', [PermissionController::class, 'edit'])->name('permission_edit');
+    Route::put('/update_permission/{id}', [PermissionController::class, 'update'])->name('permission_update');
+    
+  });
+  
+  Route::group(['prefix' => 'role'], function () {
+    Route::any('/', [RoleController::class, 'index'])->name('role-permission.role.index')->middleware('auth');
+    Route::get('/data', [RoleController::class, 'data'])->name('role-permission.role.data');
+    Route::delete('/delete', [RoleController::class, 'delete'])->name('permission_delete');
+    Route::get('/edit_permission/{id}', [RoleController::class, 'edit'])->name('permission_edit');
+    Route::put('/update_permission/{id}', [RoleController::class, 'update'])->name('permission_update');
+    
+  });

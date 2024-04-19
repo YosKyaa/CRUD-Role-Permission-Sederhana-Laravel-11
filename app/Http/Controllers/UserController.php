@@ -25,7 +25,7 @@ class UserController extends Controller
                 'password'=> $request->password,
             ]);
             if($new){
-                return redirect()->route('user.index')->with('msg','Data atas ('.$request->name.') BERHASIL ditambahkan!');
+                return redirect()->route('user_index')->with('msg','Data atas ('.$request->name.') BERHASIL ditambahkan!');
             }
         }
             $user = User::select("*")->get();
@@ -91,7 +91,7 @@ public function edit($id)
             'password'   =>  ['required'],
         ]);
 
-        return redirect()->route('user.index')->with('user', 'User berhasil diperbarui.');
+        return redirect()->route('user_index')->with('user', 'User berhasil diperbarui.');
     }
 
 

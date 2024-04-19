@@ -20,6 +20,14 @@
                             <label for="kode_Prodi">Kode Prodi:</label>
                             <input type="text" name="kode_prodi" id="kode_prodi" class="form-control" value="{{ $prodi->kode_prodi }}">
                         </div>
+                        <div class="form-group">
+                            <label for="fakultas_id">Fakultas:</label>
+                            <select name="fakultas_id" id="fakultas_id" class="form-control">
+                                @foreach($fakultas as $fakultasItem)
+                                    <option value="{{ $fakultasItem->id }}" {{ $prodi->fakultas_id == $fakultasItem->id ? 'selected' : '' }}>{{ $fakultasItem->nama_fakultas }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>

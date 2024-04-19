@@ -22,7 +22,7 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="/assets/img/favicon.png" alt class="w-40 h-40 rounded-circle"
+                        <img src="/assets/img/profile.png" alt class="w-40 h-40 rounded-circle"
                             style="object-fit: cover;">
                     </div>
                 </a>
@@ -32,7 +32,7 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="/assets/img/favicon.png"  class="w-40 h-40 rounded-circle"
+                                        <img src="/assets/img/profile.png"  class="w-40 h-40 rounded-circle"
                                             style="object-fit: cover;">
                                     </div>
                                 </div>
@@ -53,12 +53,6 @@
                         <a class="dropdown-item ">
                             <i class="bx bx-cog  me-2"></i>
                             <span class="align-middle">Edit Profil</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="dropdown-item">
-                            <i class="bx bx-wifi  me-2"></i>
-                            <span class="align-middle">Portal Wifi</span>
                         </a>
                     </li>
                     <li>

@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 fv-plugins-icon-container">
-                            <label class="form-label" for="basicDate">kode_prodi</label>
+                            <label class="form-label" for="basicDate">kode prodi</label>
                             <div class="input-group input-group-merge has-validation">
                                 <input type="text" class="form-control @error('kode_prodi') is-invalid @enderror" name="kode_prodi" id="kode_prodi" 
                                     placeholder="Kode Prodi" value="{{ old('kode_prodi') }}">
@@ -103,6 +103,15 @@
                                 </span>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="col-sm-12 fv-plugins-icon-container">
+                            <label for="fakultas_id" class="form-label" >Select Fakultas</label>
+                            <select name="fakultas_id" id="fakultas_id" class="form-select" required>
+                                <option value="">Select Fakultas</option>
+                                @foreach($fakultas as $fakultas)
+                                <option value="{{ $fakultas->id }}">{{ $fakultas->nama_fakultas }}</option>
+                            @endforeach
+                            </select>
                         </div>
                         <div class="col-sm-12 mt-4">
                             <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
@@ -147,7 +156,6 @@
 <script src="{{asset('assets/js/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/block-ui/block-ui.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     "use strict";
     setTimeout(function () {
@@ -218,12 +226,13 @@
                     className: "text-md-center",
                 },
                 
-                    {
+                {
                     render: function (data, type, row, meta) {
                         var html =
                             `<a class=" text-success" title="Edit" href="{{ url('/prodi/edit/` +
-                            row.id + `') }}"><i class="bx bxs-edit"></i></a> <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                            .id + `\',\'` + row.nama_prodi + `\',\')" ><i class="bx bx-trash"></i></a>`;
+                            row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
+                            .id + `\',\'` + row.nama_prodi + `\')" ><i class="bx bx-trash"></i></a>`;
                         return html;
                     },
                     orderable: false,
@@ -254,6 +263,7 @@
                             "_token": $("meta[name='csrf-token']").attr("content"),
                         },
                         success: function (data) {
+                            // alert(data);
                             if (data['success']) {
                                 swal(data['message'], {
                                     icon: "success",
@@ -269,7 +279,6 @@
                 }
             })
     }
-
 </script>
 
 @endsection

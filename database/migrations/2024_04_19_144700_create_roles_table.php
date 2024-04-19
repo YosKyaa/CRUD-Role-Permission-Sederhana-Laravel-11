@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('prodis', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_prodi')->unique();
-            $table->unsignedBigInteger('fakultas_id');
-            $table->foreign('fakultas_id')->references('id')->on('fakultas')->onDelete('cascade');
-            $table->string('nama_prodi');
             $table->timestamps();
         });
     }
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('prodi');
+        Schema::dropIfExists('roles');
     }
 };

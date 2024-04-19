@@ -78,7 +78,7 @@ class ProdiController extends Controller
             'fakultas_id' => $request->fakultas_id,
         ]);
 
-        return redirect()->route('prodi.index')->with('prodi', 'Prodi berhasil diperbarui.');
+        return redirect()->route('prodi_index')->with('prodi', 'Prodi berhasil diperbarui.');
     }
 
     public function delete(Request $request){
