@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Contracts\Role as ContractsRole;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
@@ -18,6 +20,7 @@ class UserController extends Controller
                 'name'       =>  ['required'],
                 'email'      =>  ['required'],
                 'password'   =>  ['required'],
+                
             ]);
             $new = User::create([
                 'name'=> $request->name,
@@ -70,29 +73,29 @@ public function datatables()
         return DataTables::of($user)->make(true);
     }
 
-public function edit($id)
-    {
-        $prodi = User::all()->findOrFail($id);
-        return view('prodi.edit_user', compact('user'));
+    
+    function edit($id, Request $request){
+        $roles = Role::get();
+        if ($request->isMethod('POST')) {
+            $this->validate($request, [ 
+                'email'=> ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
+                'name' => ['required', 'string'],
+            ]);
+            User::where('id',$id)->update([
+                'name'=> $request->name,
+                'email'=> $request->email,
+            ]);
+            $detach = User::find($id)->roles()->detach();
+            $attach = User::find($id)->roles()->attach($request->roles);
+            return redirect()->route('user.edit')->with('msg','Profil telah diperbarui!');
+        }
+        $data = User::find($id);
+        if($id == 1 || $data == null){
+            abort(403, "Access not allowed!");
+        }
+        return view('user.edit', compact('data','roles'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name'       =>  ['required'],
-            'email'      =>  ['required'],
-            'password'   =>  ['required'],
-        ]);
-
-        $prodi = User::findOrFail($id);
-        $prodi->update([
-            'name'       =>  ['required'],
-            'email'      =>  ['required'],
-            'password'   =>  ['required'],
-        ]);
-
-        return redirect()->route('user_index')->with('user', 'User berhasil diperbarui.');
-    }
 
 
     public function delete(Request $request){

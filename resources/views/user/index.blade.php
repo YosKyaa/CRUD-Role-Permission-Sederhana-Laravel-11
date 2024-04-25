@@ -134,9 +134,8 @@
                                     if (row.roles != null) {
                                         row.roles.forEach((e) => {
                                             x += '<li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="' +
-                                                e.name +
-                                                '"><i class="badge rounded-pill bg-primary"  style="font-size:8pt;">' +
-                                                e.name +
+                                                e.name + '"><i class="badge rounded-pill bg-' + e
+                                                .color + '"  style="font-size:8pt;">' + e.name +
                                                 '</i></li>';
                                         });
                                     }
@@ -148,7 +147,7 @@
                                 render: function(data, type, row, meta) {
                                     var html =
                                         `<a class=" text-success" title="Edit" href="{{ url('/user/edit/` +
-                                                                                                                                                                                            row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                                                                                                                                                                                                                                                            row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                         .id + `\',\'` + row.name +
                                         `\',\')" ><i class="bx bx-trash"></i></a>`;

@@ -44,35 +44,40 @@ class PermissionController extends Controller
         return view('role-permission.permission.create');
     }
 
-    public function store(Request $request)
+    public function edit($id)
+    {
+        $permission = Permission::findOrFail($id);
+        return view('role-permission.permission.edit', compact('permission'));
+    }
+
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'exists:permissions,name'
-            ]
+            'name' => 'required',
         ]);
-        Permission::create([
+
+        $permission = Permission::findOrFail($id);
+        $permission->update([
             'name' => $request->name
         ]);
 
-        return redirect('permissions')->with('status','Permission Created Successfully');
-
+        return redirect()->route('role-permission.permission.index')->with('permission', 'Permission berhasil diperbarui.');
     }
-    public function edit()
-    {
+    public function delete(Request $request){
 
-    }
-
-    public function update()
-    {
-
-    }
-    public function delete($id)
-    {
-        $prodi = Permission::findOrFail($id);
-        $prodi->delete();
-        return response()->json(['success' => 'Prodi berhasil dihapus']);
+        // return $request->id;
+        $data = Permission::find($request->id);
+        if($data){
+            $data->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil dihapus!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal dihapus!'
+            ]);
+        }
     }
 }

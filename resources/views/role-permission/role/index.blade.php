@@ -42,6 +42,9 @@
     <br />
 
     <div class="card">
+        <div>
+            <a href="../permission/" class="btn btn-primary">Edit Permission</a>
+        </div>
         <div class="card-datatable table-responsive">
             <div class="card-header flex-column flex-md-row pb-0">
                 <table class="table table-hover table-sm" id="datatable" width="100%">
@@ -120,18 +123,27 @@
                         },
                         {
                             render: function(data, type, row, meta) {
-                                var html = row.permissions.name;
-                                return html;
+                                var x =
+                                    '<ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">';
+                                if (row.permissions != null) {
+                                    row.permissions.forEach((e) => {
+                                        x += '<li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="' +
+                                            e.name +
+                                            '"><i class="badge rounded-pill bg-primary"  style="font-size:8pt;">' +
+                                            e.name +
+                                            '</i></li>';
+                                    });
+                                }
+                                var y = "</ul>";
+                                return x + y;
                             },
-                            className: "text-md-center",
                         },
                         {
                             render: function(data, type, row, meta) {
                                 var html =
-                                    `<a class=" text-success" title="Edit" href="{{ url('/fakultas/edit/` +
-                                                                                                                                                                                                                                                                                                                            row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                    `<a class=" text-success" title="Edit" href="{{ url('/role/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                    .id + `\',\'` + row.nama_fakultas +
+                                    .id + `\',\'` + row.name +
                                     `\')" ><i class="bx bx-trash"></i></a>`;
                                 return html;
                             },
