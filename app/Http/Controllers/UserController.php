@@ -98,19 +98,4 @@ public function datatables()
 
 
 
-    public function delete(Request $request){
-        $data = User::find($request->id);
-        if($data){
-            $data->delete();
-            return response()->json([
-                'success' => true,
-                'message' => 'Berhasil dihapus!'
-            ]);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal dihapus!'
-            ]);
-        }
-    }
 }
